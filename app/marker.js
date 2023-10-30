@@ -11,8 +11,6 @@ export function Marker({lng,lat,color,children}) {
         ()=>{
             if (!context) return
             
-            console.log({lng,lat,color})
-            
             const marker = new context.maplibregl.Marker({color})
                 .setLngLat([lat,lng])
                 .addTo(context.map)
