@@ -6,11 +6,12 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "info": "next info"
   },
   "dependencies": {
     "maplibre-gl": "^3.5.2",
-    "next": "14.0.0",
+    "next": "^14.0.1-canary.3",
     "react": "^18",
     "react-dom": "^18"
   },
