@@ -1,11 +1,11 @@
 "use client"
 
 import React from 'react'
-import {renderToString} from 'react-dom/server'
 import { MapContext } from './map'
 
 export function Marker({lng,lat,color,children}) {
     const context = React.useContext(MapContext)
+    const popupRef = React.useRef()
 
     React.useEffect(
         ()=>{
@@ -17,7 +17,7 @@ export function Marker({lng,lat,color,children}) {
 
             if (children) {
                 const popup = new context.maplibregl.Popup({offset: 25})
-                    .setHTML(renderToString(<div>{children}</div>))
+                    .setDOMContent(popupRef.current)
                 
                 marker.setPopup(popup)
             }
@@ -27,6 +27,14 @@ export function Marker({lng,lat,color,children}) {
         [context, lng,lat,color, children]
     )
 
-    return null // do not generate any html
+    if (!children) return null
+
+    return (
+        <div className='hidden'>
+            <div ref={popupRef}>
+            {children}
+            </div>
+        </div>
+    )
 }
 
